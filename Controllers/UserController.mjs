@@ -21,13 +21,13 @@ const updateConnectWallet = async (req, res) => {
   } = req.body;
 
   try {
-    await User.findOneAndUpdate(
+    const newUser = await User.findOneAndUpdate(
       { userId: user_id },
       { $set: { wallet_address: wallet_address } },
       { new: true }
     );
 
-    res.status(200).json({ success: "Wallet connected successfully." });
+    res.status(200).json(newUser);
   } catch (error) {
     res.status(400).json({ error: error });
   }
@@ -39,7 +39,7 @@ const followTwitter = async (req, res) => {
   } = req.body;
 
   try {
-    await User.findOneAndUpdate(
+    const newUser = await User.findOneAndUpdate(
       { userId: user_id },
       {
         $set: {
@@ -49,7 +49,7 @@ const followTwitter = async (req, res) => {
       { new: true }
     );
 
-    res.status(200).json({ success: "Followed Twitter successfully." });
+    res.status(200).json(newUser);
   } catch (error) {
     res.status(400).json({ error: error });
   }
