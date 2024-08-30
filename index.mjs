@@ -17,3 +17,5 @@ dbConnect()
   .catch((error) => {
     console.error("Database connection failed:", error);
   });
+
+export default app; // Ensure this line is present
