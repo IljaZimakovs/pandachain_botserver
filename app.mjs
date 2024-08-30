@@ -10,11 +10,10 @@ const app = express();
 app.use(cookieParser());
 
 const corsOptions = {
-  origin: true, // Replace with your allowed origin(s)
+  origin: "https://pandachain-io.vercel.app/", // Replace with your allowed origin(s)
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"], // Specify the HTTP methods allowed
   allowedHeaders: ["Content-Type", "Authorization"], // Specify the allowed request headers
   credentials: true, // Enable sending cookies across different domains
-  preflightContinue: false, // Disable preflight requests caching
   optionsSuccessStatus: 200 // Set the response status code for successful OPTIONS requests
 };
 
