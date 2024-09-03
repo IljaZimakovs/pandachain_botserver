@@ -23,7 +23,12 @@ const updateConnectWallet = async (req, res) => {
   try {
     const newUser = await User.findOneAndUpdate(
       { userId: user_id },
-      { $set: { wallet_address: wallet_address } },
+      {
+        $set: { wallet_address: wallet_address },
+        $inc: {
+          score: 500
+        }
+      },
       { new: true }
     );
 
@@ -44,6 +49,9 @@ const followTwitter = async (req, res) => {
       {
         $set: {
           twitter_follow: true
+        },
+        $inc: {
+          score: 500
         }
       },
       { new: true }
@@ -55,8 +63,23 @@ const followTwitter = async (req, res) => {
   }
 }
 
+const fetchFriendLists = async (req, res) => {
+  const userId = req.params.id;
+
+  try {
+    const friends = await User.find({ referrer_userId: userId });
+
+    friends.sort((a, b) => b.score - a.score);
+
+    res.status(200).json(friends);
+  } catch (error) {
+    res.status(400).json({ error: error });
+  }
+}
+
 export {
   fetchUserInfo,
   updateConnectWallet,
-  followTwitter
+  followTwitter,
+  fetchFriendLists
 };

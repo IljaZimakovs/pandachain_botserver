@@ -24,12 +24,17 @@ const UserSchema = new mongoose.Schema({
     default: false
   },
   score: {
-    type: Number
+    type: Number,
+    default: 0,
   },
   date: {
     type: Date,
     default: Date.now,
   },
+  referrer_userId: {
+    type: Number,
+    require: false
+  }
 });
 
 const User = mongoose.model("User", UserSchema);
