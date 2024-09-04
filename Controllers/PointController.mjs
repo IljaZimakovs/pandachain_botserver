@@ -34,7 +34,7 @@ const clickNewPoint = async (req, res) => {
 
         await newPoint.save();
 
-        await User.findOneAndUpdate(
+        const newUser = await User.findOneAndUpdate(
             { userId: user_id },
             {
                 $inc: { score: randomPoint },
@@ -42,7 +42,7 @@ const clickNewPoint = async (req, res) => {
             { new: true }
         );
 
-        res.status(200).json(newPoint);
+        res.status(200).json({ newPoint, score: newUser.score });
     } catch (error) {
         res.status(400).json({ error: error });
     }
