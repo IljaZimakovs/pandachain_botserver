@@ -2,9 +2,7 @@ import Point from "../models/pointModal.mjs";
 import User from "../models/userModel.mjs";
 
 const clickNewPoint = async (req, res) => {
-    const {
-        user_id
-    } = req.body;
+    const { user_id } = req.body;
 
     const plusPointText = ["Bamboo-tastic!", "Earn Panda Points"];
     const minusPointText = ["Bamboo-zled! Try again", "That bamboo shoot fell short..."];
@@ -12,9 +10,14 @@ const clickNewPoint = async (req, res) => {
     try {
         let randomPoint;
 
-        do {
-            randomPoint = Math.floor(Math.random() * 39) - 19;
-        } while (randomPoint === 0);
+        // Generate randomPoint with 70% chance for positive and 30% chance for negative
+        if (Math.random() < 0.7) {
+            // 70% chance of positive randomPoint
+            randomPoint = Math.floor(Math.random() * 20) + 1; // Positive point between 1 and 20
+        } else {
+            // 30% chance of negative randomPoint
+            randomPoint = Math.floor(Math.random() * 20) - 20; // Negative point between -1 and -19
+        }
 
         const getRandomText = (array) => array[Math.floor(Math.random() * array.length)];
 
@@ -29,7 +32,7 @@ const clickNewPoint = async (req, res) => {
         const newPoint = new Point({
             userId: user_id,
             text: chosenText,
-            point: randomPoint
+            point: randomPoint,
         });
 
         await newPoint.save();
@@ -46,7 +49,7 @@ const clickNewPoint = async (req, res) => {
     } catch (error) {
         res.status(400).json({ error: error });
     }
-}
+};
 
 const fetchPointById = async (req, res) => {
     const userId = req.params.id;

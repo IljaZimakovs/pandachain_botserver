@@ -68,12 +68,6 @@ const startTGBot = () => {
               inline_keyboard: [
                 [
                   {
-                    text: "Sign for Digital Resistance",
-                    callback_data: "sign_for_resistance"
-                  },
-                ],
-                [
-                  {
                     text: "Join for Panda Points",
                     web_app: { url: "https://pandachain-io.vercel.app/" },
                   },
@@ -136,12 +130,6 @@ const startTGBot = () => {
               inline_keyboard: [
                 [
                   {
-                    text: "Sign for Digital Resistance",
-                    callback_data: "sign_for_resistance"
-                  },
-                ],
-                [
-                  {
                     text: "Join for Panda Points",
                     web_app: { url: "https://pandachain-io.vercel.app/" },
                   },
@@ -190,7 +178,7 @@ const startTGBot = () => {
               [
                 {
                   text: "Full version of the guide",
-                  url: 'https://medium.com/@PandaChainio/welcome-to-the-world-of-pandachain-31dccd8f1db3'
+                  url: 'https://medium.com/@PandaChainio/welcome-to-the-world-of-pandachain-5fbbc979117c'
                 },
               ]
             ],
