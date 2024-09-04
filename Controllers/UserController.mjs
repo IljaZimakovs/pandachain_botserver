@@ -51,7 +51,7 @@ const followTwitter = async (req, res) => {
           twitter_follow: true
         },
         $inc: {
-          score: 500
+          score: 300
         }
       },
       { new: true }
