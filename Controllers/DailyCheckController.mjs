@@ -43,12 +43,7 @@ const dailyCheckIn = async (req, res) => {
         if (daily.streak > 7) {
             daily.streak = 1;
         }
-    } else if (dayDifference === 0) {
-        // Missed a day, reset points and streak
-        daily.points = 100;
-        daily.streak = 1;
-    }
-
+    } 
     // Update the last check-in date
     daily.lastCheckIn = currentDate;
     await daily.save();
