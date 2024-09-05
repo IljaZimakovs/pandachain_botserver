@@ -12,9 +12,7 @@ const dailyCheckIn = async (req, res) => {
     }
 
     const lastCheckInDate = new Date(daily.lastCheckIn);
-    console.log('lastCheckInDate', lastCheckInDate)
     const dayDifference = Math.floor((currentDate - lastCheckInDate) / (1000 * 60 * 60 * 24));
-    console.log('dayDifference', dayDifference)
 
     if (dayDifference === 1) {
         // daily has checked in consecutively, increase streak
@@ -90,7 +88,19 @@ const dailyCheckInAvailable = async (req, res) => {
         return res.json({ available: true, points: daily.points, streak: daily.streak });
     } else {
         // No new reward available yet (within the same day)
-        return res.json({ available: false, nextAvailableIn: 24 - ((currentDate - lastCheckInDate) / (1000 * 60 * 60)) });
+        let _points;
+
+        switch (daily.streak) {
+            case 1: _points = 50; break;
+            case 2: _points = 100; break;
+            case 3: _points = 150; break;
+            case 4: _points = 200; break;
+            case 5: _points = 300; break;
+            case 6: _points = 400; break;
+            case 7: _points = 50; break;
+            default: _points = 50;
+        }
+        return res.json({ available: false, points: _points });
     }
 
 }
