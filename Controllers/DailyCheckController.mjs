@@ -14,7 +14,7 @@ const dailyCheckIn = async (req, res) => {
     const lastCheckInDate = new Date(daily.lastCheckIn);
     const dayDifference = Math.floor((currentDate - lastCheckInDate) / (1000 * 60 * 60 * 24));
 
-    if (dayDifference === 1) {
+    if (dayDifference >= 1) {
         // daily has checked in consecutively, increase streak
         daily.streak += 1;
 
