@@ -172,10 +172,7 @@ const startTGBot = () => {
   });
 
   bot.on('callback_query:data', async (ctx) => {
-    if (ctx.callbackQuery.data === 'sign_for_resistance') {
-      await ctx.answerCallbackQuery();
-      await ctx.reply('Thank you for joining the Digital Resistance! More information will be sent to you soon.');
-    } else if (ctx.callbackQuery.data === 'how_to_earn') {
+    if (ctx.callbackQuery.data === 'how_to_earn') {
       await ctx.answerCallbackQuery();
       await ctx.reply('Complete initial tasks to earn generous Panda Points. Unlock daily quests after finishing all tasks. Daily quests include check-ins (earn more with consecutive check-ins) and more. Stay tuned for exciting partnerships!\n\n🐼🐼 Invite Friends to Earn More\nInvite friends and get a Mystery Box for each new panda. More pandas, more rewards! Each Mystery Box contains valuable Panda Points.\n\n🎉 Poke the Panda for Fun\nTest your luck with a poke! Maybe something, maybe nothing.\n\n💸 Get Ready for Panda’s Token\nBy year’s end, we’ll roll out Panda’s token for our community! Dates will be announced in our updates. Stay tuned!',
         {
