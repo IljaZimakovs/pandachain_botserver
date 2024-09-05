@@ -93,7 +93,7 @@ const clickMysteryBox = async (req, res) => {
 
     const point = Math.floor(Math.random() * 550);
 
-    await User.findOneAndUpdate(
+    const newUser = await User.findOneAndUpdate(
         { userId: user_id },
         {
             $inc: { score: point, mystery_box: -1 },
@@ -101,7 +101,7 @@ const clickMysteryBox = async (req, res) => {
         { new: true }
     );
 
-    res.status(200).json(point);
+    res.status(200).json({ point: point, totalPoint: newUser.score });
 }
 
 export { clickNewPoint, fetchPointById, clickMysteryBox };

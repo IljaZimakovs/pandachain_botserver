@@ -23,6 +23,10 @@ const UserSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   },
+  tg_follow: {
+    type: Boolean,
+    default: false
+  },
   score: {
     type: Number,
     default: 0,
