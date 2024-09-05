@@ -13,37 +13,33 @@ const dailyCheckIn = async (req, res) => {
 
     const lastCheckInDate = new Date(daily.lastCheckIn);
     const dayDifference = Math.floor((currentDate - lastCheckInDate) / (1000 * 60 * 60 * 24));
-    
-    let newUser;
-    
-    if (dayDifference >= 1) {
-        // daily has checked in consecutively, increase streak
-        daily.streak += 1;
 
-        newUser = await User.findOneAndUpdate(
-            { userId: user_id },
-            {
-                $inc: {
-                    score: daily.points
-                }
-            },
-            { new: true }
-        );
+    // daily has checked in consecutively, increase streak
+    daily.streak += 1;
 
-        switch (daily.streak) {
-            case 1: daily.points = 100; break;
-            case 2: daily.points = 150; break;
-            case 3: daily.points = 200; break;
-            case 4: daily.points = 300; break;
-            case 5: daily.points = 400; break;
-            case 6: daily.points = 500; break;
-            case 7: daily.points = 50; break;
-            default: daily.points = 50;
-        }
-        if (daily.streak > 7) {
-            daily.streak = 1;
-        }
-    } 
+    const newUser = await User.findOneAndUpdate(
+        { userId: user_id },
+        {
+            $inc: {
+                score: daily.points
+            }
+        },
+        { new: true }
+    );
+
+    switch (daily.streak) {
+        case 1: daily.points = 100; break;
+        case 2: daily.points = 150; break;
+        case 3: daily.points = 200; break;
+        case 4: daily.points = 300; break;
+        case 5: daily.points = 400; break;
+        case 6: daily.points = 500; break;
+        case 7: daily.points = 50; break;
+        default: daily.points = 50;
+    }
+    if (daily.streak > 7) {
+        daily.streak = 1;
+    }
     // Update the last check-in date
     daily.lastCheckIn = currentDate;
     await daily.save();
