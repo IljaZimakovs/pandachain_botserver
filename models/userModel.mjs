@@ -46,6 +46,10 @@ const UserSchema = new mongoose.Schema({
   sequence_no: {
     type: Number,
     require: false
+  },
+  mystery_box: {
+    type: Number,
+    default: 0
   }
 });
 

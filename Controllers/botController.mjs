@@ -60,10 +60,16 @@ const startTGBot = () => {
               { $set: { referrer_userId: Number(referrer_userId) } },
               { new: true }
             );
+
+            await User.findOneAndUpdate(
+              { userId: Number(referrer_userId) },
+              { $inc: { mystery_box: 1 } },
+              { new: true }
+            )
           }
 
           ctx.replyWithPhoto(photoUrl, {
-            caption: `Hey ${username ? username : first_name}, welcome to Pandatopia, the first Optimism-based TON L2 designed to bring liquidity and users from the EVM and Bitcoin ecosystem! Here’s what you can do:\n\n🆓 Join the movement! Let’s unite our voices. Together, we can join DigitalResistance on PandaChain to Free Durov. Click below to sign the petition and be part of something significant!\n\n🔍 Complete Quests Earn generous Panda Points by completing initial and daily tasks.\n\n🐼 Invite Friends Invite friends and get valuable Mystery Boxes for each new panda.\n\n💸 Stay Tuned Panda’s token is coming soon—don’t miss out!`,
+            caption: `Hey @${username ? username : first_name}, welcome to Pandatopia, the first Optimism-based TON L2 designed to bring liquidity and users from the EVM and Bitcoin ecosystem! Here’s what you can do:\n\n🆓 Join the movement! Let’s unite our voices. Together, we can join DigitalResistance on PandaChain to Free Durov. Click below to sign the petition and be part of something significant!\n\n🔍 Complete Quests Earn generous Panda Points by completing initial and daily tasks.\n\n🐼 Invite Friends Invite friends and get valuable Mystery Boxes for each new panda.\n\n💸 Stay Tuned Panda’s token is coming soon—don’t miss out!`,
             reply_markup: {
               inline_keyboard: [
                 [
@@ -125,7 +131,7 @@ const startTGBot = () => {
           }
 
           ctx.replyWithPhoto(photoUrl, {
-            caption: `Hey ${username ? username : first_name}, welcome to Pandatopia, the first Optimism-based TON L2 designed to bring liquidity and users from the EVM and Bitcoin ecosystem! Here’s what you can do:\n\n🆓 Join the movement! Let’s unite our voices. Together, we can join DigitalResistance on PandaChain to Free Durov. Click below to sign the petition and be part of something significant!\n\n🔍 Complete Quests Earn generous Panda Points by completing initial and daily tasks.\n\n🐼 Invite Friends Invite friends and get valuable Mystery Boxes for each new panda.\n\n💸 Stay Tuned Panda’s token is coming soon—don’t miss out!`,
+            caption: `Hey @${username ? username : first_name}, welcome to Pandatopia, the first Optimism-based TON L2 designed to bring liquidity and users from the EVM and Bitcoin ecosystem! Here’s what you can do:\n\n🆓 Join the movement! Let’s unite our voices. Together, we can join DigitalResistance on PandaChain to Free Durov. Click below to sign the petition and be part of something significant!\n\n🔍 Complete Quests Earn generous Panda Points by completing initial and daily tasks.\n\n🐼 Invite Friends Invite friends and get valuable Mystery Boxes for each new panda.\n\n💸 Stay Tuned Panda’s token is coming soon—don’t miss out!`,
             reply_markup: {
               inline_keyboard: [
                 [

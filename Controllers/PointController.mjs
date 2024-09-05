@@ -1,6 +1,40 @@
 import Point from "../models/pointModal.mjs";
 import User from "../models/userModel.mjs";
 
+let positiveCount = 0;
+let negativeCount = 0;
+let totalClicks = 0;
+let randomPoint;
+
+function generateRandomPoint() {
+    if (totalClicks < 10) {
+        if (positiveCount < 7 && negativeCount < 3) {
+            if (Math.random() < 0.7) {
+                randomPoint = Math.floor(Math.random() * 20) + 1; // Positive point between 1 and 20
+                positiveCount++;
+            } else {
+                randomPoint = Math.floor(Math.random() * 20) - 20; // Negative point between -1 and -17
+                negativeCount++;
+            }
+        } else if (positiveCount >= 7) {
+            // Only generate negative points if already 7 positives
+            randomPoint = Math.floor(Math.random() * 20) - 20;
+            negativeCount++;
+        } else if (negativeCount >= 3) {
+            // Only generate positive points if already 3 negatives
+            randomPoint = Math.floor(Math.random() * 20) + 1;
+            positiveCount++;
+        }
+        totalClicks++;
+    } else {
+        positiveCount = 0;
+        negativeCount = 0;
+        totalClicks = 0;
+    }
+
+    return randomPoint;
+}
+
 const clickNewPoint = async (req, res) => {
     const { user_id } = req.body;
 
@@ -8,22 +42,13 @@ const clickNewPoint = async (req, res) => {
     const minusPointText = ["Bamboo-zled! Try again", "That bamboo shoot fell short..."];
 
     try {
-        let randomPoint;
-
-        // Generate randomPoint with 70% chance for positive and 30% chance for negative
-        if (Math.random() < 0.7) {
-            // 70% chance of positive randomPoint
-            randomPoint = Math.floor(Math.random() * 20) + 1; // Positive point between 1 and 20
-        } else {
-            // 30% chance of negative randomPoint
-            randomPoint = Math.floor(Math.random() * 20) - 20; // Negative point between -1 and -19
-        }
+        const point = generateRandomPoint()
 
         const getRandomText = (array) => array[Math.floor(Math.random() * array.length)];
 
         let chosenText;
 
-        if (randomPoint > 0) {
+        if (point > 0) {
             chosenText = getRandomText(plusPointText);
         } else {
             chosenText = getRandomText(minusPointText);
@@ -32,7 +57,7 @@ const clickNewPoint = async (req, res) => {
         const newPoint = new Point({
             userId: user_id,
             text: chosenText,
-            point: randomPoint,
+            point: point,
         });
 
         await newPoint.save();
@@ -40,7 +65,7 @@ const clickNewPoint = async (req, res) => {
         const newUser = await User.findOneAndUpdate(
             { userId: user_id },
             {
-                $inc: { score: randomPoint },
+                $inc: { score: point },
             },
             { new: true }
         );
@@ -63,4 +88,20 @@ const fetchPointById = async (req, res) => {
     }
 }
 
-export { clickNewPoint, fetchPointById };
+const clickMysteryBox = async (req, res) => {
+    const { user_id } = req.body;
+
+    const point = Math.floor(Math.random() * 550);
+
+    await User.findOneAndUpdate(
+        { userId: user_id },
+        {
+            $inc: { score: point, mystery_box: -1 },
+        },
+        { new: true }
+    );
+
+    res.status(200).json(point);
+}
+
+export { clickNewPoint, fetchPointById, clickMysteryBox };
