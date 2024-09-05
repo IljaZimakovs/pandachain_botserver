@@ -11,6 +11,7 @@ import {
   verifyAccount,
 } from "../Controllers/UserController.mjs";
 import { clickNewPoint, fetchPointById, clickMysteryBox } from "../Controllers/PointController.mjs";
+import { dailyCheckIn, dailyCheckInAvailable } from "../Controllers/DailyCheckController.mjs";
 
 const router = express.Router();
 
@@ -26,5 +27,7 @@ router.post("/verify-account", verifyAccount);
 router.post('/click-point', clickNewPoint);
 router.get('/get-point/:id', fetchPointById)
 router.post('/click-mystery', clickMysteryBox)
+router.post('/checkin', dailyCheckIn);
+router.get('/checkin/status/:id', dailyCheckInAvailable)
 
 export default router;

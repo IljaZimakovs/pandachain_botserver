@@ -1,5 +1,6 @@
 import User from "../models/userModel.mjs";
 import Sequence from "../models/sequenceModal.mjs";
+import DailyCheck from "../models/dailyCheckModal.mjs";
 import { Bot, InlineKeyboard } from "grammy";
 import { getNextSequenceValue } from "../utils/sequence.mjs";
 
@@ -43,10 +44,17 @@ const startTGBot = () => {
               username: username,
               first_name: first_name,
               last_name: last_name,
-              sequence_no: sequenceNumber
+              sequence_no: sequenceNumber,
+              score: 500
             });
 
+            const newDailyCheck = new DailyCheck({
+              userId: userId,
+              lastCheckIn: new Date()
+            })
+
             await newUser.save();
+            await newDailyCheck.save();
           } else {
             console.log("This user already exists.");
           }
@@ -122,10 +130,17 @@ const startTGBot = () => {
               username: username,
               first_name: first_name,
               last_name: last_name,
-              sequence_no: sequenceNumber
+              sequence_no: sequenceNumber,
+              score: 500
             });
 
+            const newDailyCheck = new DailyCheck({
+              userId: userId,
+              lastCheckIn: new Date()
+            })
+
             await newUser.save();
+            await newDailyCheck.save();
           } else {
             console.log("This user already exists.");
           }
