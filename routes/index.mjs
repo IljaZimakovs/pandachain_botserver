@@ -5,6 +5,8 @@ import {
   followTwitter,
   followTelegram,
   fetchFriendLists,
+  followReTweet,
+  followTwitterPost,
   verifyUsername,
   verifyAccount,
 } from "../Controllers/UserController.mjs";
@@ -17,6 +19,8 @@ router.get("/get-friends/:id", fetchFriendLists)
 router.post("/connect-wallet", updateConnectWallet);
 router.post("/follow_twitter", followTwitter);
 router.post("/follow-telegram", followTelegram);
+router.post("/follow-retweet", followReTweet);
+router.post("/follow-tpost", followTwitterPost);
 router.post("/verify-username", verifyUsername);
 router.post("/verify-account", verifyAccount);
 router.post('/click-point', clickNewPoint);

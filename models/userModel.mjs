@@ -23,6 +23,14 @@ const UserSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   },
+  rt_follow: {
+    type: Boolean,
+    default: false
+  },
+  tpost_follow: {
+    type: Boolean,
+    default: false
+  },
   tg_follow: {
     type: Boolean,
     default: false
