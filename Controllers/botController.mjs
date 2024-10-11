@@ -83,7 +83,7 @@ const startTGBot = () => {
                 [
                   {
                     text: "Join for Panda Points",
-                    web_app: { url: "https://pandachain-io.vercel.app/" },
+                    web_app: { url: "https://fortune-cookie-fe.vercel.app/" },
                   },
                 ],
                 [
@@ -152,7 +152,7 @@ const startTGBot = () => {
                 [
                   {
                     text: "Join for Panda Points",
-                    web_app: { url: "https://pandachain-io.vercel.app/" },
+                    web_app: { url: "https://fortune-cookie-fe.vercel.app/" },
                   },
                 ],
                 [
