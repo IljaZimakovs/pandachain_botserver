@@ -7,7 +7,7 @@ import { getNextSequenceValue } from "../utils/sequence.mjs";
 const startTGBot = () => {
   const paidUsers = new Map();
   const bot = new Bot(process.env.TELEGRAM_BOT_API_KEY);
-  const photoUrl = 'https://gateway.pinata.cloud/ipfs/QmaEPwtmmPz3CGP7VrgDMgQ9ZinwPHxSc7UAUw9LwkohzY';
+  const photoUrl = 'https://gateway.pinata.cloud/ipfs/QmWB8zcwwgJd6UZVA5ouLH6mY3ZuT32Bse65UDEVbiuUFm';
 
   bot.on("message:text", async (ctx) => {
     const messageText = ctx.message.text;
