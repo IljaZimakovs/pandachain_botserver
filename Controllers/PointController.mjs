@@ -38,7 +38,7 @@ function generateRandomPoint() {
 const clickNewPoint = async (req, res) => {
     const { user_id } = req.body;
 
-    const plusPointText = ["Bamboo-tastic!", "Earn Panda Points"];
+    const plusPointText = ["Bamboo-tastic!", "Earn Cookie Points"];
     const minusPointText = ["Bamboo-zled! Try again", "That bamboo shoot fell short..."];
 
     try {

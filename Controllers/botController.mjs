@@ -7,7 +7,7 @@ import { getNextSequenceValue } from "../utils/sequence.mjs";
 const startTGBot = () => {
   const paidUsers = new Map();
   const bot = new Bot(process.env.TELEGRAM_BOT_API_KEY);
-  const photoUrl = 'https://gateway.pinata.cloud/ipfs/QmWB8zcwwgJd6UZVA5ouLH6mY3ZuT32Bse65UDEVbiuUFm';
+  const photoUrl = 'https://autobuffy.s3.eu-north-1.amazonaws.com/cookie_welcome.jpeg';
 
   bot.on("message:text", async (ctx) => {
     const messageText = ctx.message.text;
@@ -77,12 +77,12 @@ const startTGBot = () => {
           }
 
           ctx.replyWithPhoto(photoUrl, {
-            caption: `Hey @${username ? username : first_name}, welcome to Pandatopia, the first Optimism-based TON L2 designed to bring liquidity and users from the EVM and Bitcoin ecosystem! Here’s what you can do:\n\n🆓 Join the movement! Let’s unite our voices. Together, we can join DigitalResistance on PandaChain to Free Durov. Click below to sign the petition and be part of something significant!\n\n🔍 Complete Quests Earn generous Panda Points by completing initial and daily tasks.\n\n🐼 Invite Friends Invite friends and get valuable Mystery Boxes for each new panda.\n\n💸 Stay Tuned Panda’s token is coming soon—don’t miss out!`,
+            caption: `Hey @${username ? username : first_name}, welcome to Cookietopia, the first Optimism-based TON L2 designed to bring liquidity and users from the EVM and Bitcoin ecosystem! Here’s what you can do:\n\n🆓 Join the movement! Let’s unite our voices. Together, we can join DigitalResistance on CookieChain to Free Durov. Click below to sign the petition and be part of something significant!\n\n🔍 Complete Quests Earn generous Cookie Points by completing initial and daily tasks.\n\n🥠 Invite Friends Invite friends and get valuable Mystery Boxes for each new panda.\n\n💸 Stay Tuned Cookie's token is coming soon—don’t miss out!`,
             reply_markup: {
               inline_keyboard: [
                 [
                   {
-                    text: "Join for Panda Points",
+                    text: "Join for Cookie Points",
                     web_app: { url: "https://fortune-cookie-fe.vercel.app/" },
                   },
                 ],
@@ -146,12 +146,12 @@ const startTGBot = () => {
           }
 
           ctx.replyWithPhoto(photoUrl, {
-            caption: `Hey @${username ? username : first_name}, welcome to Pandatopia, the first Optimism-based TON L2 designed to bring liquidity and users from the EVM and Bitcoin ecosystem! Here’s what you can do:\n\n🆓 Join the movement! Let’s unite our voices. Together, we can join DigitalResistance on PandaChain to Free Durov. Click below to sign the petition and be part of something significant!\n\n🔍 Complete Quests Earn generous Panda Points by completing initial and daily tasks.\n\n🐼 Invite Friends Invite friends and get valuable Mystery Boxes for each new panda.\n\n💸 Stay Tuned Panda’s token is coming soon—don’t miss out!`,
+            caption: `Hey @${username ? username : first_name}, welcome to Cookietopia, the first Optimism-based TON L2 designed to bring liquidity and users from the EVM and Bitcoin ecosystem! Here’s what you can do:\n\n🆓 Join the movement! Let’s unite our voices. Together, we can join DigitalResistance on CookieChain to Free Durov. Click below to sign the petition and be part of something significant!\n\n🔍 Complete Quests Earn generous Cookie Points by completing initial and daily tasks.\n\n🥠 Invite Friends Invite friends and get valuable Mystery Boxes for each new cookie.\n\n💸 Stay Tuned Cookie’s token is coming soon—don’t miss out!`,
             reply_markup: {
               inline_keyboard: [
                 [
                   {
-                    text: "Join for Panda Points",
+                    text: "Join for Cookie Points",
                     web_app: { url: "https://fortune-cookie-fe.vercel.app/" },
                   },
                 ],
@@ -189,7 +189,7 @@ const startTGBot = () => {
   bot.on('callback_query:data', async (ctx) => {
     if (ctx.callbackQuery.data === 'how_to_earn') {
       await ctx.answerCallbackQuery();
-      await ctx.reply('Complete initial tasks to earn generous Panda Points. Unlock daily quests after finishing all tasks. Daily quests include check-ins (earn more with consecutive check-ins) and more. Stay tuned for exciting partnerships!\n\n🐼🐼 Invite Friends to Earn More\nInvite friends and get a Mystery Box for each new panda. More pandas, more rewards! Each Mystery Box contains valuable Panda Points.\n\n🎉 Poke the Panda for Fun\nTest your luck with a poke! Maybe something, maybe nothing.\n\n💸 Get Ready for Panda’s Token\nBy year’s end, we’ll roll out Panda’s token for our community! Dates will be announced in our updates. Stay tuned!',
+      await ctx.reply('Complete initial tasks to earn generous Cookie Points. Unlock daily quests after finishing all tasks. Daily quests include check-ins (earn more with consecutive check-ins) and more. Stay tuned for exciting partnerships!\n\n🥠 Invite Friends to Earn More\nInvite friends and get a Mystery Box for each new cookie. More cookies, more rewards! Each Mystery Box contains valuable cookie Points.\n\n🎉 Poke the Panda for Fun\nTest your luck with a poke! Maybe something, maybe nothing.\n\n💸 Get Ready for Panda’s Token\nBy year’s end, we’ll roll out Panda’s token for our community! Dates will be announced in our updates. Stay tuned!',
         {
           reply_markup: {
             inline_keyboard: [
